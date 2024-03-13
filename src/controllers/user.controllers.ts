@@ -35,7 +35,7 @@ const generateAccessAndRefreshTokens = async (userId: any) => {
 
         
         const accessToken = await user?.generateAccessToken();
-        const refreshToken = user?.generateRefreshToken();
+        const refreshToken = await user?.generateRefreshToken();
         user.refreshToken = refreshToken;
         await user?.save({ validateBeforeSave: false });
 
@@ -101,7 +101,7 @@ const userLogin = asyncHandler(async (req: CustomRequest, res: Response, next: N
 
     const options = {
         httpOnly: true,
-        secure: true,
+        // secure: true,
     };
 
     return res
@@ -137,7 +137,7 @@ const logoutUser = asyncHandler(async(req : CustomRequest, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        // secure: true
     }
 
     return res
